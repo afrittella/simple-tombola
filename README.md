@@ -9,4 +9,4 @@ The project was created with [Next.js](https://nextjs.org/) because it will be i
 - real-time board for online players
 - detect "ambo, terno etc.". :) 
 
-![alt screenshot](http://github.com/afrittella/simple-tombola/img.png)
+![alt screenshot](https://github.com/afrittella/simple-tombola/blob/main/demo.png)
