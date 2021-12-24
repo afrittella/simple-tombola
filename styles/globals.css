@@ -1,16 +1,61 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer components {
+  .bullet {
+    @apply transition-all ease-in-out duration-500 border border-red-300 rounded-xl w-14 h-14 text-center font-bold text-xl flex justify-center items-center text-red-800;
+  }
 
-* {
-  box-sizing: border-box;
+  .bullet--selected {
+    @apply border-4 rounded-full border-red-700 bg-gradient-to-t from-amber-200 to-amber-500;
+  }
+
+  .extracted-bullet {
+    @apply transition-all ease-in-out duration-500 w-20 h-20 text-center font-bold text-3xl flex justify-center items-center text-red-800;
+    @apply bullet--selected;
+  }
+
+  .bullet:first-child,
+  .bullet:nth-child(2),
+  .bullet:nth-child(3),
+  .bullet:nth-child(4),
+  .bullet:nth-child(5),
+  .bullet:nth-child(6),
+  .bullet:nth-child(7),
+  .bullet:nth-child(8),
+  .bullet:nth-child(9),
+  .bullet:nth-child(10),
+  .bullet:nth-child(30n + 1),
+  .bullet:nth-child(30n + 2),
+  .bullet:nth-child(30n + 3),
+  .bullet:nth-child(30n + 4),
+  .bullet:nth-child(30n + 5),
+  .bullet:nth-child(30n + 6),
+  .bullet:nth-child(30n + 7),
+  .bullet:nth-child(30n + 8),
+  .bullet:nth-child(30n + 9),
+  .bullet:nth-child(30n + 10) {
+    @apply mt-6;
+  }
+
+  .bullet:nth-child(5n) {
+    @apply mr-6;
+  }
+
+  .bullet:nth-child(10n + 1) {
+    @apply ml-6;
+  }
+
+  .bullet:nth-child(30n) {
+    @apply mb-6;
+  }
+
+  .btn {
+    @apply border border-gray-500 rounded-2xl px-4 py-2;
+  }
+
+  .btn-action {
+    @apply btn bg-green-700 text-gray-100 font-semibold;
+  }
 }
