@@ -4,7 +4,9 @@ import Head from 'next/head'
 import { useBoard } from 'hooks/useBoard'
 
 const Home: NextPage = () => {
-  const { extract, numbers, extracted, init } = useBoard()
+  const [cardColor, setCardColor] = React.useState<string>('card--yellow')
+  const { extract, numbers, extracted, init, wins, originalWins, status } =
+    useBoard()
 
   return (
     <div>
@@ -21,6 +23,40 @@ const Home: NextPage = () => {
 
         <main className='grid grid-cols-[250px,_2fr]'>
           <aside className='p-4'>
+            <div className='flex items-start justify-around my-4'>
+              <button
+                className={`btn-color bg-yellow-400 ${
+                  cardColor === 'card--yellow' ? 'ring-4 ring-gray-600' : ''
+                }`}
+                onClick={() => setCardColor('card--yellow')}
+              >
+                {' '}
+              </button>
+              <button
+                className={`btn-color bg-red-400 ${
+                  cardColor === 'card--red' ? 'ring-4 ring-gray-600' : ''
+                }`}
+                onClick={() => setCardColor('card--red')}
+              >
+                {' '}
+              </button>
+              <button
+                className={`btn-color bg-cyan-400 ${
+                  cardColor === 'card--cyan' ? 'ring-4 ring-gray-600' : ''
+                }`}
+                onClick={() => setCardColor('card--cyan')}
+              >
+                {' '}
+              </button>
+              <button
+                className={`btn-color bg-green-400 ${
+                  cardColor === 'card--green' ? 'ring-4 ring-gray-600' : ''
+                }`}
+                onClick={() => setCardColor('card--green')}
+              >
+                {' '}
+              </button>
+            </div>
             <div className='flex justify-center items-center p-2'>
               <div>
                 <div className='extracted-bullet'>
@@ -29,13 +65,34 @@ const Home: NextPage = () => {
               </div>
             </div>
             <div className='flex flex-col'>
-              <button className='btn-action my-2' onClick={() => extract()}>
+              <button
+                className={`${
+                  status === 'ended' ? 'btn-disabled' : 'btn-action'
+                } my-2 py-6`}
+                onClick={() => extract()}
+                disabled={status === 'ended'}
+              >
                 EXTRACT
               </button>
 
               <button className='btn my-2' onClick={() => init()}>
                 RESET
               </button>
+            </div>
+            <div className='flex flex-col mt-5'>
+              <h4 className='text-xl font-bold'>Winnings</h4>
+              {Array.from(originalWins).map((win) => (
+                <p
+                  className={`text-2xl my-2 ${
+                    wins && !wins.includes(win[1])
+                      ? 'line-through text-green-700'
+                      : ''
+                  }`}
+                  key={`win_${win[1]}`}
+                >
+                  {win[1].slice(0, 1).toUpperCase() + win[1].slice(1)}
+                </p>
+              ))}
             </div>
           </aside>
           <div>
@@ -48,10 +105,7 @@ const Home: NextPage = () => {
                     }
                   >
                     {[1, 2, 3, 4, 5, 6].map((item) => (
-                      <div
-                        key={`card_${item}`}
-                        className='bg-gradient-to-b from-red-100 to-red-300 rounded-xl shadow'
-                      >
+                      <div key={`card_${item}`} className={`card ${cardColor}`}>
                         {' '}
                       </div>
                     ))}
