@@ -1,3 +1,6 @@
+> [!NOTE]
+> This project is not actively maintained (maybe one time I will put my hands on it again), so some dependencies are out-of-date and vulnerable.
+
 ## Simple Tombola
 
 Due to COVID-19 we couldn't play the classic italian board game known as "Tombola" with our relatives.
